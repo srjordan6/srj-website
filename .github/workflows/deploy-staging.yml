@@ -1,0 +1,19 @@
+name: Deploy to Staging
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy to GoDaddy staging
+        uses: godaddy-wordpress/gd-wordpress-deployer@v0.0.1
+        with:
+          remote_host: '1166798.us17.ssh.myftpupload.com'
+          ssh_user: 'git_deployer_331d2c65f5_1166798'
+          ssh_private_key: ${{ secrets.PRIVATE_KEY }}
+          enable_health_check: 'no'
