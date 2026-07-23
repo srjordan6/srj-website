@@ -1,18 +1,19 @@
-name: Deploy to Staging
+name: Deploy to Production
 
-# Fires on every push to main, and can be run by hand.
+# Manual only. Production never deploys on push.
 on:
-  push:
-    branches: [ main ]
   workflow_dispatch:
 
 concurrency:
-  group: deploy-staging
+  group: deploy-production
   cancel-in-progress: false
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    # Requires one approval when a 'production' environment with required
+    # reviewers exists in repo settings. Without one, this line is inert.
+    environment: production
 
     steps:
       - name: Checkout
@@ -23,17 +24,13 @@ jobs:
           mkdir -p ~/.ssh
           printf '%s' "${{ secrets.PRIVATE_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -H 0g6.84f.myftpupload.com >> ~/.ssh/known_hosts 2>/dev/null
+          ssh-keyscan -H 1166339.us17.ssh.myftpupload.com >> ~/.ssh/known_hosts 2>/dev/null
 
       - name: Sync files (additive only, never deletes)
         run: |
           RSH="ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new"
-          DEST="git_deployer_0ce5dfd9f0_1166798@0g6.84f.myftpupload.com"
+          DEST="git_deployer_dbb488b884_1166339@1166339.us17.ssh.myftpupload.com"
 
-          # NO --delete flag, by design. GoDaddy's own deployer computed a
-          # 14,887-file deletion list from this repo (including wp-config.php)
-          # because the repo intentionally tracks only our code. This pipeline
-          # is additive: it creates and overwrites, it never removes.
           rsync -rvz --checksum -e "$RSH" \
             wp-content/themes/srj-consulting/ \
             "$DEST:/html/wp-content/themes/srj-consulting/"
@@ -48,7 +45,7 @@ jobs:
 
       - name: Verify sizes on server
         run: |
-          RSH_CMD() { ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new git_deployer_0ce5dfd9f0_1166798@0g6.84f.myftpupload.com "$@"; }
+          RSH_CMD() { ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new git_deployer_dbb488b884_1166339@1166339.us17.ssh.myftpupload.com "$@"; }
 
           fail=0
           check() {
@@ -66,7 +63,6 @@ jobs:
             fi
           }
 
-          # The files whose loss or truncation has hurt before
           check wp-content/themes/srj-consulting/inc/ai-governance-config.php
           check wp-content/themes/srj-consulting/inc/helpers.php
           check wp-content/themes/srj-consulting/footer.php
