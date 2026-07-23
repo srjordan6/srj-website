@@ -1,3 +1,11 @@
+# ---------------------------------------------------------------------------
+# SRJ website repo, ignore rules
+#
+# Principle: this repo tracks OUR code only. WordPress core, third-party
+# plugins, and uploaded media are not ours to version, and secrets are never
+# committed at all.
+# ---------------------------------------------------------------------------
+
 # WordPress core
 /wp-admin/
 /wp-includes/
@@ -7,10 +15,13 @@
 /license.txt
 /readme.html
 
-# Secrets. Never commit.
-# Catch-all glob is deliberate: source-wp-config.php holds live DB
-# credentials and is NOT matched by an exact "wp-config.php" rule.
+# Secrets and environment. Never commit.
+# The catch-all glob is deliberate: this tree also contains
+# source-wp-config.php, which carries live database credentials and would
+# NOT be matched by an exact "wp-config.php" rule.
 *wp-config*.php
+wp-config.php
+wp-config-local.php
 *.env
 .env*
 *credentials*
@@ -27,15 +38,16 @@
 /wp-content/upgrade/
 /wp-content/cache/
 /wp-content/backup*/
+/wp-content/w3tc-config/
 
-# Third-party plugins, managed through WP admin
+# Third-party plugins. Managed through the WP admin, not this repo.
 /wp-content/plugins/
 
-# All themes except ours
+# Parent theme and any other theme. Kadence is updated through WP admin.
 /wp-content/themes/*
 !/wp-content/themes/srj-consulting/
 
-# Host mu-plugins we do not own
+# Host and dropin plugins we do not own
 /wp-content/mu-plugins/gd-system-plugin/
 /wp-content/mu-plugins/gd-system-plugin.php
 /wp-content/mu-plugins/object-cache-pro/
@@ -45,20 +57,22 @@
 /wp-content/advanced-cache.php
 /wp-content/db.php
 
-# Browser download artifacts and backups.
-# A file named "ai-governance-config (1).php" took the AI Governance
-# library offline on July 20 2026. These never enter the repo.
+# Browser download artifacts. These caused a production outage on
+# July 20 2026 when "ai-governance-config (1).php" was uploaded as the
+# live config. They must never enter the repo or reach the server.
 *(1)*
 *(2)*
 *(3)*
 *.old
 *.bak
 *.sav
+*.pre-migration.bak
 *.orig
 *.rej
 
 # OS and editor noise
 Thumbs.db
+ehthumbs.db
 Desktop.ini
 .DS_Store
 ._*
@@ -69,4 +83,5 @@ Desktop.ini
 
 # Local tooling
 /node_modules/
+/.deploy-cache/
 deploy.local.ps1
