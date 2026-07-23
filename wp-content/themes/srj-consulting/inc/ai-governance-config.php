@@ -45,6 +45,22 @@ $SRJ_GOVERNANCE = array();
 // =======================================================================
 // ISO/IEC 42001 — CATEGORY, FULLY BUILT (pattern proof)
 // =======================================================================
+// ---------------------------------------------------------------------------
+// Database serving guard (v1.73, July 2026)
+//
+// When the SRJ AI Governance Database mu-plugin is active and
+// wp_srj_governance has rows, the library is served from the table and the
+// ~990KB of entries below never executes. With the plugin absent, the table
+// missing, or the table empty, this falls through and the file behaves
+// exactly as it always has. The $srj_govdb_force_raw flag is set by the
+// importer while it reads this file, so an import cannot feed database
+// content back into itself.
+// ---------------------------------------------------------------------------
+if ( empty( $GLOBALS['srj_govdb_force_raw'] ) && function_exists( 'srj_govdb_has_rows' ) && srj_govdb_has_rows() ) {
+    $SRJ_GOVERNANCE = srj_govdb_get_all();
+    return;
+}
+
 $SRJ_GOVERNANCE['iso-42001'] = array(
     'title'            => 'ISO/IEC 42001',
     'subtitle'         => 'The AI Management System Standard',
