@@ -29,7 +29,7 @@ jobs:
       - name: Sync files (additive only, never deletes)
         run: |
           RSH="ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new"
-          DEST="git_deployer_dbb488b884_1166339@1166339.us17.ssh.myftpupload.com"
+          DEST="git_deployer_690ab25086_1166339@1166339.us17.ssh.myftpupload.com"
 
           rsync -rvz --checksum -e "$RSH" \
             wp-content/themes/srj-consulting/ \
@@ -45,7 +45,7 @@ jobs:
 
       - name: Verify sizes on server
         run: |
-          RSH_CMD() { ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new git_deployer_dbb488b884_1166339@1166339.us17.ssh.myftpupload.com "$@"; }
+          RSH_CMD() { ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new git_deployer_690ab25086_1166339@1166339.us17.ssh.myftpupload.com "$@"; }
 
           fail=0
           check() {
