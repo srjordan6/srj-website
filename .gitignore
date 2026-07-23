@@ -1,0 +1,72 @@
+# WordPress core
+/wp-admin/
+/wp-includes/
+/index.php
+/wp-*.php
+/xmlrpc.php
+/license.txt
+/readme.html
+
+# Secrets. Never commit.
+# Catch-all glob is deliberate: source-wp-config.php holds live DB
+# credentials and is NOT matched by an exact "wp-config.php" rule.
+*wp-config*.php
+*.env
+.env*
+*credentials*
+*secret*
+*.pem
+*.key
+
+# Host-owned files at web root
+/.sucuriquarantine/
+/plat-cron.php
+
+# Uploads and generated media
+/wp-content/uploads/
+/wp-content/upgrade/
+/wp-content/cache/
+/wp-content/backup*/
+
+# Third-party plugins, managed through WP admin
+/wp-content/plugins/
+
+# All themes except ours
+/wp-content/themes/*
+!/wp-content/themes/srj-consulting/
+
+# Host mu-plugins we do not own
+/wp-content/mu-plugins/gd-system-plugin/
+/wp-content/mu-plugins/gd-system-plugin.php
+/wp-content/mu-plugins/object-cache-pro/
+/wp-content/mu-plugins/object-cache-pro.php
+/wp-content/mu-plugins/vendor/
+/wp-content/object-cache.php
+/wp-content/advanced-cache.php
+/wp-content/db.php
+
+# Browser download artifacts and backups.
+# A file named "ai-governance-config (1).php" took the AI Governance
+# library offline on July 20 2026. These never enter the repo.
+*(1)*
+*(2)*
+*(3)*
+*.old
+*.bak
+*.sav
+*.orig
+*.rej
+
+# OS and editor noise
+Thumbs.db
+Desktop.ini
+.DS_Store
+._*
+*.swp
+*~
+.vscode/
+.idea/
+
+# Local tooling
+/node_modules/
+deploy.local.ps1
