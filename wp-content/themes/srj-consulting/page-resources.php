@@ -106,7 +106,7 @@ if ( $srj_res_gl_cats < 1 )     { $srj_res_gl_cats = 12; }
 
         <div class="srjres-card">
           <h3><a href="<?php echo esc_url( home_url( '/ai-governance/sources/' ) ); ?>">Sources &amp; References</a></h3>
-          <p>The complete bibliography: 74 primary sources and 45 peer-reviewed research works, maintained the way a book maintains its reference section.</p>
+          <p>The complete bibliography: 78 primary sources and 45 peer-reviewed research works, maintained the way a book maintains its reference section.</p>
         </div>
 
         <div class="srjres-card">
