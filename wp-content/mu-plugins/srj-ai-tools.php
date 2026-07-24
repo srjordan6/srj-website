@@ -214,7 +214,7 @@ function srj_ai_tools_get_grouped() {
 	// order. Together they make the database render byte-identical to the
 	// static catalog HTML it replaces.
 	$rows = $wpdb->get_results(
-		"SELECT tool_name, category, vendor, vendor_hq, governance_notes
+		"SELECT tool_name, category, vendor, vendor_hq, governance_notes, tool_url
 		 FROM {$table}
 		 WHERE is_published = 1
 		 ORDER BY BINARY category ASC, tool_name ASC"
