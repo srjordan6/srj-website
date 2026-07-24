@@ -2,7 +2,7 @@
 /**
  * SRJ AI Glossary seed data.
  * Generated from merged_ai_glossary_expanded.csv, 20 July 2026.
- * 416 terms across 10 categories.
+ * 466 terms across 11 categories.
  *
  * Two cleanups were applied to the source, which had merged two separate
  * glossaries with different conventions:
@@ -16,6 +16,12 @@
  *    (Fine Tuning vs Fine-tuning, Top K vs Top-K, RAG, VLM, Chain-of-Thought,
  *    Few-Shot, Zero-Shot). The fuller definition was kept in each case and
  *    the terse variant dropped, taking 423 rows to 416.
+ *
+ * 3. Expansion, 23 July 2026. Fifty AI Security & Assurance terms added
+ *    (sourced from the Volume V glossary draft, definitions consistent with
+ *    The AI IT Security Audit), taking 416 rows to 466 and 10 categories
+ *    to 11. The category sorts alphabetically between Agents and
+ *    Architecture on the rendered page.
  *
  * Consumed by srj-ai-glossary.php importer. Not loaded on the front end.
  */
@@ -437,4 +443,54 @@ array('Supervised Fine-Tuning (SFT)','supervised-fine-tuning-sft','Training & Me
 array('Tokens per Parameter','tokens-per-parameter','Training & Mechanics','Ratio guiding how much data a model of a given size should see.','Chinchilla optimal training.'),
 array('Underfitting','underfitting','Training & Mechanics','A situation where a model is too simple to capture the underlying structure of training data.','Linear model fit to complex non-linear data.'),
 array('Weights','weights','Training & Mechanics','Learned numerical values within a neural network that determine the strength of connection between artificial neurons.','Model parameters adjusted during backpropagation.'),
+array('Adversarial Testing','adversarial-testing','AI Security & Assurance','Deliberately attacking your own AI system to find what breaks before someone else does.','Injection, boundary, and output tests.'),
+array('Agent Boundary','agent-boundary','AI Security & Assurance','The documented limit on what an agent may read, write, and trigger.','Empty cells are findings, not omissions.'),
+array('AI System Plan','ai-system-plan','AI Security & Assurance','Documentation of an AI system\'s purpose, controls, and monitoring, in the format NIST SP 800-18r2 defines.','The SSP discipline extended to AI.'),
+array('AIVSS (AI Vulnerability Scoring System)','aivss-ai-vulnerability-scoring-system','AI Security & Assurance','OWASP scoring method for rating the severity of AI-specific vulnerabilities.','What sequences a remediation roadmap.'),
+array('Annex I / Annex III (EU AI Act)','annex-i-annex-iii-eu-ai-act','AI Security & Assurance','The two routes into high-risk classification: AI embedded in regulated products, and stand-alone high-risk use cases.','Classification decides the obligation set.'),
+array('Attack Surface','attack-surface','AI Security & Assurance','Every point where an attacker can attempt to reach or influence a system.','AI adds inference endpoints and tool calls.'),
+array('Audit Trail','audit-trail','AI Security & Assurance','Tamper-resistant record of who did what, when, and under what authority.','Agent actions belong in it too.'),
+array('Blast Radius','blast-radius','AI Security & Assurance','How much damage a compromised identity or agent can cause before anything stops it.','Write access is what makes it large.'),
+array('CE Marking','ce-marking','AI Security & Assurance','Manufacturer\'s declaration that a product meets EU requirements and may be sold in the single market.','Product compliance, not security assurance.'),
+array('Compensating Control','compensating-control','AI Security & Assurance','A substitute control applied when the preferred control cannot be deployed in time.','WAF rule while a patch is pending.'),
+array('Conformity Assessment','conformity-assessment','AI Security & Assurance','The formal process of demonstrating a product meets regulatory requirements before it goes to market.','Self-assessed or third-party assessed.'),
+array('Context Isolation','context-isolation','AI Security & Assurance','Keeping one user\'s prompts, retrieved data, and cached results out of another user\'s session.','A leak with no attacker involved.'),
+array('COSAiS (Control Overlays for Securing AI Systems)','cosais-control-overlays-for-securing-ai-systems','AI Security & Assurance','NIST project mapping the SP 800-53 control catalog onto AI systems.','Implementation detail beneath the Cyber AI Profile.'),
+array('Cyber AI Profile (NIST IR 8596)','cyber-ai-profile-nist-ir-8596','AI Security & Assurance','NIST profile applying the Cybersecurity Framework 2.0 to AI, organized as Secure, Defend, and Thwart.','Bridges CSF 2.0 and the AI RMF.'),
+array('Cyber Resilience Act (CRA)','cyber-resilience-act-cra','AI Security & Assurance','EU regulation setting lifecycle cybersecurity requirements for products with digital elements.','Article 12(1) deems compliance with part of AI Act Article 15.'),
+array('Data Loss Prevention (DLP)','data-loss-prevention-dlp','AI Security & Assurance','Controls that detect and block sensitive data leaving the organization.','Rarely tuned to watch a prompt box.'),
+array('Data Provenance','data-provenance','AI Security & Assurance','Verified record of where data came from and what it may be used for.','Consent, licensing, and residency travel with it.'),
+array('Defensible Evidence','defensible-evidence','AI Security & Assurance','A dated, owned artifact that answers what the organization knew and when it knew it.','What a regulator accepts instead of assurance.'),
+array('Digital Omnibus (AI)','digital-omnibus-ai','AI Security & Assurance','The 2026 package of targeted amendments to the EU AI Act, deferring high-risk deadlines and restructuring conformity assessment.','Annex III moved to December 2027.'),
+array('DPIA (Data Protection Impact Assessment)','dpia-data-protection-impact-assessment','AI Security & Assurance','Documented assessment of privacy risk required before certain high-risk processing.','Triggered by many AI deployments.'),
+array('Harmonised Standard','harmonised-standard','AI Security & Assurance','A European standard that, once cited, gives a presumption of conformity with a regulation.','The practical route to compliance.'),
+array('Incident Response (IR)','incident-response-ir','AI Security & Assurance','The documented and rehearsed process for detecting, containing, and recovering from a security event.','An untested plan is treated as no plan.'),
+array('Machine Identity','machine-identity','AI Security & Assurance','Any credential belonging to software rather than a person.','Now outnumbers human identities in most environments.'),
+array('Materiality','materiality','AI Security & Assurance','Whether an event is significant enough to require disclosure to investors or regulators.','Starts the SEC four-day clock.'),
+array('MITRE ATLAS','mitre-atlas','AI Security & Assurance','Public knowledge base of observed adversary tactics and techniques against AI systems.','The ATT&CK equivalent for AI.'),
+array('Model Artifact','model-artifact','AI Security & Assurance','The weights, adapters, and tuning data that constitute a trained model.','A production asset with recovery requirements.'),
+array('Model Exfiltration','model-exfiltration','AI Security & Assurance','Extracting a model\'s behavior or training data through repeated queries.','Each request looks legitimate.'),
+array('Model Risk Management (MRM)','model-risk-management-mrm','AI Security & Assurance','Supervisory expectations for validating and governing models used in regulated decisions.','SR 26-2 and OCC 2026-13 replaced SR 11-7 in April 2026.'),
+array('Model Supply Chain','model-supply-chain','AI Security & Assurance','Everything a model depends on that the organization did not build.','Weights, tuning data, and pipelines.'),
+array('NIST SP 800-207','nist-sp-800-207','AI Security & Assurance','The NIST publication defining zero trust architecture and its tenets.','Written before agent traffic existed.'),
+array('Non-Human Identity (NHI)','non-human-identity-nhi','AI Security & Assurance','Any identity that can authenticate and act without a person present.','The population most access reviews miss.'),
+array('Notified Body','notified-body','AI Security & Assurance','An accredited organization designated to carry out third-party conformity assessment.','Capacity is the current constraint.'),
+array('Output Filtering','output-filtering','AI Security & Assurance','Inspecting generated responses before release and blocking or redacting what should not go out.','Catches what retrieval pulled in.'),
+array('OWASP LLM Top 10','owasp-llm-top-10','AI Security & Assurance','Consensus list of the highest-priority security risks in LLM applications.','The scoring baseline for AI AppSec.'),
+array('Permission-Based Execution','permission-based-execution','AI Security & Assurance','Evaluating each attempted action against policy at the moment it is attempted.','Enforcement, not documentation.'),
+array('Presumption of Conformity','presumption-of-conformity','AI Security & Assurance','Legal assumption that following a cited standard satisfies the underlying requirement.','Shifts the burden of proof.'),
+array('Privacy Budget','privacy-budget','AI Security & Assurance','The parameter bounding how much any single record can influence a model\'s output under differential privacy.','A claim without an epsilon value is unevidenced.'),
+array('Right of Erasure','right-of-erasure','AI Security & Assurance','An individual\'s right to have their personal data deleted.','Stops before the embedding store.'),
+array('SBOM (Software Bill of Materials)','sbom-software-bill-of-materials','AI Security & Assurance','Inventory of the components and dependencies inside a piece of software.','Answers provenance, not data licensing.'),
+array('Service Principal','service-principal','AI Security & Assurance','A non-human identity used by an application to authenticate to a service.','Predictable, unlike an agent.'),
+array('SIEM (Security Information and Event Management)','siem-security-information-and-event-management','AI Security & Assurance','Platform that centralizes logs and correlates them into alerts.','AI gateway logs often never reach it.'),
+array('Silent Upgrade','silent-upgrade','AI Security & Assurance','A vendor switching on an AI feature inside software you already run, with no new contract.','Found in release notes, not procurement.'),
+array('SOC 2','soc-2','AI Security & Assurance','Attestation report on a service organization\'s controls over security, availability, and confidentiality.','The report enterprise buyers ask for.'),
+array('Software Provenance','software-provenance','AI Security & Assurance','Verified record of where code, containers, and model weights originated.','Signed and traceable to a source.'),
+array('Threat Modeling','threat-modeling','AI Security & Assurance','Structured analysis of how a system could be attacked, done before it ships.','AI adds questions the old model never asked.'),
+array('Three Lines Model','three-lines-model','AI Security & Assurance','IIA framework separating risk ownership, oversight, and independent assurance.','AI governance sits in the second line.'),
+array('Tool Allowlisting','tool-allowlisting','AI Security & Assurance','Restricting an agent to a defined set of tools evaluated at execution time.','Scoped per workflow, not per agent.'),
+array('Unbounded Consumption','unbounded-consumption','AI Security & Assurance','Runaway inference volume that imposes cost and exhausts capacity.','OWASP LLM10, seen first on an invoice.'),
+array('Workload Identity','workload-identity','AI Security & Assurance','An identity assigned to a running workload rather than to a person or an application registration.','Common in cloud and container platforms.'),
+array('Zero Trust','zero-trust','AI Security & Assurance','Security model that verifies every request rather than trusting network location.','NIST SP 800-207; rarely extended to agents.'),
 );
