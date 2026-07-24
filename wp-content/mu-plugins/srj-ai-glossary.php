@@ -4,8 +4,16 @@
  * Description:  Database layer for the AI Glossary. Creates wp_srj_glossary,
  *               imports the seed terms, and exposes the query API the
  *               page-ai-glossary.php template renders from.
- * Version:      1.0.0
+ * Version:      1.1.0
  * Author:       SRJ Consulting & Services LLC
+ *
+ * 1.1.0 (July 23, 2026): Origin column added (schema v2) for the
+ * dictionary-format expansion: each term can carry a one-line origin or
+ * attribution (paper, standard, regulation, or "emerged in community
+ * usage"). Importer maps the new sixth seed element and gains a
+ * "retire rows absent from seed" option so duplicate cleanups can
+ * unpublish rows the seed no longer carries (reversible: sets
+ * is_published=0, never deletes).
  *
  * Phase 1 sibling of the SRJ AI Tools Inventory plugin, same design:
  * a must-use plugin, schema version-gated on an option and checked at
@@ -24,8 +32,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SRJ_GLOSSARY_VERSION', '1.0.0' );
-define( 'SRJ_GLOSSARY_DB_VERSION', 1 );
+define( 'SRJ_GLOSSARY_VERSION', '1.1.0' );
+define( 'SRJ_GLOSSARY_DB_VERSION', 2 );
 
 /**
  * Fully qualified table name.
@@ -57,6 +65,7 @@ function srj_glossary_install() {
 		category VARCHAR(190) NOT NULL DEFAULT '',
 		definition TEXT NULL,
 		example TEXT NULL,
+		origin VARCHAR(255) NOT NULL DEFAULT '',
 		see_also VARCHAR(255) NOT NULL DEFAULT '',
 		source_note VARCHAR(255) NOT NULL DEFAULT '',
 		is_published TINYINT(1) NOT NULL DEFAULT 1,
@@ -95,9 +104,12 @@ add_action( 'admin_init', 'srj_glossary_maybe_install' );
  * the published flag are left untouched on existing rows, so a re-import
  * refreshes definitions without discarding hand edits.
  *
+ * @param bool $retire_absent When true, rows whose term_slug is not in the
+ *                            seed are unpublished (is_published=0) after the
+ *                            upsert pass. Reversible; nothing is deleted.
  * @return array|WP_Error
  */
-function srj_glossary_import_seed() {
+function srj_glossary_import_seed( $retire_absent = false ) {
 	global $wpdb;
 
 	$seed_file = __DIR__ . '/srj-ai-glossary-data.php';
@@ -116,6 +128,7 @@ function srj_glossary_import_seed() {
 	$inserted = 0;
 	$updated  = 0;
 	$failed   = 0;
+	$slugs    = array();
 
 	foreach ( $rows as $row ) {
 		if ( ! is_array( $row ) || count( $row ) < 5 ) {
@@ -124,6 +137,8 @@ function srj_glossary_import_seed() {
 		}
 
 		list( $term, $term_slug, $category, $definition, $example ) = $row;
+		$origin  = isset( $row[5] ) ? $row[5] : '';
+		$slugs[] = $term_slug;
 
 		$existing_id = $wpdb->get_var(
 			$wpdb->prepare( "SELECT id FROM {$table} WHERE term_slug = %s", $term_slug )
@@ -135,6 +150,7 @@ function srj_glossary_import_seed() {
 			'category'   => $category,
 			'definition' => $definition,
 			'example'    => $example,
+			'origin'     => $origin,
 		);
 
 		if ( $existing_id ) {
@@ -156,10 +172,22 @@ function srj_glossary_import_seed() {
 
 	update_option( 'srj_glossary_last_import', current_time( 'mysql' ) );
 
+	$retired = 0;
+	if ( $retire_absent && ! empty( $slugs ) ) {
+		$placeholders = implode( ',', array_fill( 0, count( $slugs ), '%s' ) );
+		$retired      = (int) $wpdb->query(
+			$wpdb->prepare(
+				"UPDATE {$table} SET is_published = 0 WHERE is_published = 1 AND term_slug NOT IN ({$placeholders})",
+				$slugs
+			)
+		);
+	}
+
 	return array(
 		'inserted' => $inserted,
 		'updated'  => $updated,
 		'failed'   => $failed,
+		'retired'  => $retired,
 		'total'    => count( $rows ),
 	);
 }
@@ -183,7 +211,7 @@ function srj_glossary_get_grouped() {
 	}
 
 	$rows = $wpdb->get_results(
-		"SELECT term, term_slug, category, definition, example
+		"SELECT term, term_slug, category, definition, example, origin
 		 FROM {$table}
 		 WHERE is_published = 1
 		 ORDER BY category ASC, term ASC"
@@ -281,17 +309,19 @@ function srj_glossary_admin_page() {
 		isset( $_POST['srj_glossary_import'] )
 		&& check_admin_referer( 'srj_glossary_import_action', 'srj_glossary_nonce' )
 	) {
-		$result = srj_glossary_import_seed();
+		$retire = ! empty( $_POST['srj_glossary_retire_absent'] );
+		$result = srj_glossary_import_seed( $retire );
 		if ( is_wp_error( $result ) ) {
 			$notice = '<div class="notice notice-error"><p>Import failed: '
 				. esc_html( $result->get_error_message() ) . '</p></div>';
 		} else {
 			$notice = '<div class="notice notice-success"><p>Import complete. '
 				. sprintf(
-					'%d inserted, %d updated, %d failed, %d rows in seed.',
+					'%d inserted, %d updated, %d failed, %d retired, %d rows in seed.',
 					(int) $result['inserted'],
 					(int) $result['updated'],
 					(int) $result['failed'],
+					(int) $result['retired'],
 					(int) $result['total']
 				)
 				. '</p></div>';
@@ -331,6 +361,8 @@ function srj_glossary_admin_page() {
 		. 'Editorial columns (see also, source note) and the published flag are never overwritten.</p>';
 	echo '<form method="post">';
 	wp_nonce_field( 'srj_glossary_import_action', 'srj_glossary_nonce' );
+	echo '<p><label><input type="checkbox" name="srj_glossary_retire_absent" value="1"> '
+		. 'Retire rows absent from seed (unpublish any term the seed no longer carries; reversible)</label></p>';
 	submit_button( 'Import seed glossary', 'primary', 'srj_glossary_import' );
 	echo '</form>';
 

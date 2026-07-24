@@ -15,6 +15,13 @@
  * text; the dash and sense number are CSS-generated content, invisible
  * to the parser. Category grouping unchanged (Option B).
  *
+ * v1.2.0 (July 23, 2026): Origin line added (Tier 2 dictionary format).
+ * When a term carries an origin attribution it renders as a small
+ * bracketed line after the example, Merriam-Webster style. The origin
+ * element sits outside the definition paragraph, so the sync parser
+ * (which takes the first text block as the definition and splits on
+ * "Example:") never sees it as content.
+ *
  * Navigation is two-layer and deliberate:
  *   - Category jump links scroll to a category block.
  *   - The A-Z bar FILTERS rather than jumps. Because the page is grouped
@@ -74,6 +81,8 @@ foreach ( $srj_gl_grouped as $srj_gl_terms ) {
 .srjgl-term .srjgl-eg em { color: #5F5E5A; font-style: italic; }
 .srjgl-term .srjgl-eg::before { content: "\2014\00a0"; color: #7A8A9E; }
 .srjgl-eg-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.srjgl-origin { display: block; margin-top: 5px; font-family: Poppins, sans-serif; font-size: 13px; line-height: 1.5; color: #7A8A9E; }
+.srjgl-origin .srjgl-origin-label { text-transform: uppercase; letter-spacing: 0.08em; font-size: 11px; color: #201868; font-weight: 600; margin-right: 6px; }
 
 .srjgl-empty { text-align: center; font-family: Poppins, sans-serif; color: #7A8A9E; padding: 40px 0; }
 
@@ -129,6 +138,9 @@ foreach ( $srj_gl_grouped as $srj_gl_terms ) {
           <span class="srjgl-eg"><em><span class="srjgl-eg-label">Example: </span><?php echo esc_html( $srj_gl_t->example ); ?></em></span>
 <?php endif; ?>
         </p>
+<?php if ( isset( $srj_gl_t->origin ) && '' !== $srj_gl_t->origin ) : ?>
+        <span class="srjgl-origin"><span class="srjgl-origin-label">Origin</span><?php echo esc_html( $srj_gl_t->origin ); ?></span>
+<?php endif; ?>
       </div>
 <?php endforeach; ?>
     </div>
