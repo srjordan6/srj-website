@@ -2,7 +2,10 @@
 /**
  * SRJ AI Tools seed data.
  * Generated from SRJ_AI_Tool_Inventory_Tracker.csv, 19 July 2026.
- * 317 tools, 23 categories. Regenerate when the tracker CSV changes.
+ * 320 tools, 23 categories. Regenerate when the tracker CSV changes.
+ * July 24, 2026: added IBM watsonx.governance, Jamf AI Governance, Truyo;
+ * ServiceNow row updated for the AI Control Tower expansion. Context: Gartner
+ * published its first AI Governance Platforms Magic Quadrant in June 2026.
  * Consumed by srj-ai-tools.php importer. Not loaded on the front end.
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
@@ -13,9 +16,12 @@ array('Credo AI','AI Governance & Risk Management Platforms','Credo AI','US','Pu
 array('Fiddler AI','AI Governance & Risk Management Platforms','Fiddler','US','Model performance management; explainability; bias detection; drift monitoring; LLM observability'),
 array('Holistic AI','AI Governance & Risk Management Platforms','Holistic AI','UK','Bias auditing, risk management, compliance; strong technical depth; mid-market focus'),
 array('IBM OpenPages with Watson','AI Governance & Risk Management Platforms','IBM','US','Full GRC platform with AI-specific modules; risk assessment; regulatory mapping; Watson AI automated documentation'),
+array('IBM watsonx.governance','AI Governance & Risk Management Platforms','IBM','US','AI lifecycle governance; model evaluation, monitoring, and documentation; EU AI Act accelerators; named a Leader in Gartner\'s first AI Governance Platforms Magic Quadrant (June 2026)'),
+array('Jamf AI Governance','AI Governance & Risk Management Platforms','Jamf','US','Native AI control plane for macOS fleets, GA July 1, 2026; discovery and policy enforcement for on-device and cloud AI use on Mac endpoints'),
 array('Monitaur','AI Governance & Risk Management Platforms','Monitaur','US','Model monitoring with built-in governance; unified monitoring + governance platform'),
 array('OneTrust AI Governance','AI Governance & Risk Management Platforms','OneTrust','US','Privacy-first approach; strong data governance; compliance automation; good for privacy-primary orgs'),
-array('ServiceNow AI Governance','AI Governance & Risk Management Platforms','ServiceNow','US','Built into Now Platform; model inventory; risk scoring; approval workflows; best for existing ServiceNow shops'),
+array('ServiceNow AI Governance','AI Governance & Risk Management Platforms','ServiceNow','US','Built into Now Platform; model inventory; risk scoring; approval workflows; AI Control Tower expanded June 2026 to discover, observe, govern, secure, and measure AI deployed across any system; best for existing ServiceNow shops'),
+array('Truyo','AI Governance & Risk Management Platforms','Truyo','US','AI governance platform grown out of consent and privacy automation; automated AI inventory, risk assessment, and compliance workflows; recognized in Gartner\'s 2026 AI Governance Platforms Magic Quadrant'),
 array('WhyLabs','AI Governance & Risk Management Platforms','WhyLabs','US','Data-centric AI observability; statistical profiling; privacy-preserving monitoring'),
 array('Apify','Automation & Agents','Apify','Czech Republic','Web scraping platform; actor marketplace; automation; EU-hosted; GDPR'),
 array('Automation Anywhere','Automation & Agents','Automation Anywhere','US','Intelligent automation platform; AI-powered bots; control room governance; credential vault'),
