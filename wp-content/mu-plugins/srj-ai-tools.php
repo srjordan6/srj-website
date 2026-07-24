@@ -30,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 define( 'SRJ_AI_TOOLS_VERSION', '1.0.0' );
-define( 'SRJ_AI_TOOLS_DB_VERSION', 1 );
+define( 'SRJ_AI_TOOLS_DB_VERSION', 2 );
 
 /**
  * Fully qualified table name.
@@ -62,6 +62,7 @@ function srj_ai_tools_install() {
 		vendor VARCHAR(190) NOT NULL DEFAULT '',
 		vendor_hq VARCHAR(120) NOT NULL DEFAULT '',
 		governance_notes TEXT NULL,
+		tool_url VARCHAR(300) NOT NULL DEFAULT '',
 		in_use TINYINT(1) NOT NULL DEFAULT 0,
 		owner VARCHAR(190) NOT NULL DEFAULT '',
 		department VARCHAR(190) NOT NULL DEFAULT '',
@@ -141,6 +142,7 @@ function srj_ai_tools_import_seed() {
 		}
 
 		list( $tool_name, $category, $vendor, $vendor_hq, $governance_notes ) = $row;
+		$tool_url = isset( $row[5] ) ? trim( (string) $row[5] ) : '';
 
 		$existing_id = $wpdb->get_var(
 			$wpdb->prepare(
@@ -156,6 +158,7 @@ function srj_ai_tools_import_seed() {
 			'vendor'           => $vendor,
 			'vendor_hq'        => $vendor_hq,
 			'governance_notes' => $governance_notes,
+			'tool_url'         => $tool_url,
 		);
 
 		if ( $existing_id ) {
@@ -291,9 +294,20 @@ function srj_ai_tools_render_catalog() {
 			$note = trim( (string) $tool->governance_notes );
 			$note = rtrim( $note, '.' );
 
+			$url  = isset( $tool->tool_url ) ? trim( (string) $tool->tool_url ) : '';
+			if ( '' !== $url ) {
+				$name_html = sprintf(
+					'<a href="%s" target="_blank" rel="noopener">%s</a>',
+					esc_url( $url ),
+					esc_html( $tool->tool_name )
+				);
+			} else {
+				$name_html = esc_html( $tool->tool_name );
+			}
+
 			$html .= sprintf(
 				'  <li><strong>%s</strong> (%s, %s) &mdash; %s.</li>' . "\n",
-				esc_html( $tool->tool_name ),
+				$name_html,
 				esc_html( $tool->vendor ),
 				esc_html( $hq ),
 				esc_html( $note )
