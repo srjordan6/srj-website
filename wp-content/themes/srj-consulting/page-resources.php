@@ -19,6 +19,13 @@
  * The glossary is a new page at /resources/ai-glossary/, rendered from
  * the wp_srj_glossary table by page-ai-glossary.php.
  *
+ * v1.83 (July 24, 2026): Stale counts fixed and made self-maintaining.
+ * The governance page count, tools count, and glossary term/category
+ * counts are now queried live from the srj_governance, srj_ai_tools,
+ * and srj_glossary tables, with the July 24 numbers (63 / 320 / 500 in
+ * 12 categories) as static fallbacks if a table is empty or missing.
+ * This page can no longer drift when the libraries grow.
+ *
  * Styling follows the page-ai-governance.php pattern (inline <style>
  * scoped to srjres-* classes). Migrates to assets/css/ on the next
  * consolidation pass, same as the governance hub.
@@ -27,6 +34,18 @@ $GLOBALS['srj_current_nav'] = 'resources';
 get_header();
 
 $srj_res_audit_url = 'https://aiauditforcompanies.com/startaiaudit/';
+
+// Live counts with static fallbacks (v1.83). Suppressed errors: a missing
+// table returns null and the fallback number is used.
+global $wpdb;
+$srj_res_gov_count   = (int) @$wpdb->get_var( "SELECT COUNT(*) FROM {$wpdb->prefix}srj_governance WHERE is_published = 1" );
+$srj_res_tools_count = (int) @$wpdb->get_var( "SELECT COUNT(*) FROM {$wpdb->prefix}srj_ai_tools WHERE is_published = 1" );
+$srj_res_gl_count    = (int) @$wpdb->get_var( "SELECT COUNT(*) FROM {$wpdb->prefix}srj_glossary WHERE is_published = 1" );
+$srj_res_gl_cats     = (int) @$wpdb->get_var( "SELECT COUNT(DISTINCT category) FROM {$wpdb->prefix}srj_glossary WHERE is_published = 1" );
+if ( $srj_res_gov_count < 1 )   { $srj_res_gov_count = 63; }
+if ( $srj_res_tools_count < 1 ) { $srj_res_tools_count = 320; }
+if ( $srj_res_gl_count < 1 )    { $srj_res_gl_count = 500; }
+if ( $srj_res_gl_cats < 1 )     { $srj_res_gl_cats = 12; }
 ?>
 
 <?php srj_page_hero( 'Resources', 'Reference Material' ); ?>
@@ -72,17 +91,17 @@ $srj_res_audit_url = 'https://aiauditforcompanies.com/startaiaudit/';
 
         <div class="srjres-card">
           <h3><a href="<?php echo esc_url( home_url( '/ai-governance/' ) ); ?>">AI Governance Reference Library</a></h3>
-          <p>Sixty-one pages covering every framework, law, agency enforcement posture, and sector rule that governs AI in the US and EU, plus China and ten further jurisdictions. Corrections included where the field is confidently wrong.</p>
+          <p><?php echo esc_html( $srj_res_gov_count ); ?> pages covering every framework, law, agency enforcement posture, and sector rule that governs AI in the US and EU, plus China and ten further jurisdictions. Corrections included where the field is confidently wrong.</p>
         </div>
 
         <div class="srjres-card">
           <h3><a href="<?php echo esc_url( home_url( '/ai-governance/ai-tools/' ) ); ?>">AI Tools Catalog</a></h3>
-          <p>317 AI tools across 23 categories, each with vendor, headquarters jurisdiction, and the governance flag it raises. The working list behind an AI tool inventory.</p>
+          <p><?php echo esc_html( $srj_res_tools_count ); ?> AI tools across 23 categories, each with vendor, headquarters jurisdiction, and the governance flag it raises. The working list behind an AI tool inventory.</p>
         </div>
 
         <div class="srjres-card">
           <h3><a href="<?php echo esc_url( home_url( '/resources/ai-glossary/' ) ); ?>">AI Glossary</a></h3>
-          <p>416 terms across 10 categories, defined in plain English. The vocabulary that shows up in vendor pitches, board papers, and regulation, with a live search and an A to Z filter.</p>
+          <p><?php echo esc_html( $srj_res_gl_count ); ?> terms across <?php echo esc_html( $srj_res_gl_cats ); ?> categories, defined in plain English. The vocabulary that shows up in vendor pitches, board papers, and regulation, with a live search and an A to Z filter.</p>
         </div>
 
         <div class="srjres-card">
