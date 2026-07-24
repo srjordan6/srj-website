@@ -7,6 +7,14 @@
  * v1.0.0 (July 20, 2026): Initial build. 416 terms across 10 categories,
  * grouped by category with terms alphabetical inside each group.
  *
+ * v1.1.0 (July 23, 2026): Dictionary restyle. Entries now read like a
+ * traditional dictionary: Lora serif headwords in navy with a hanging
+ * indent, an orange sense number, and italic examples led by an em dash.
+ * The literal "Example:" label stays in the DOM (visually hidden) because
+ * the srj-audit-sync plugin's parser extracts examples by finding that
+ * text; the dash and sense number are CSS-generated content, invisible
+ * to the parser. Category grouping unchanged (Option B).
+ *
  * Navigation is two-layer and deliberate:
  *   - Category jump links scroll to a category block.
  *   - The A-Z bar FILTERS rather than jumps. Because the page is grouped
@@ -57,12 +65,15 @@ foreach ( $srj_gl_grouped as $srj_gl_terms ) {
 .srjgl-group h2 { font-family: Lora, serif; font-size: 26px; color: #201868; margin: 0 0 4px; font-weight: 600; }
 .srjgl-group-rule { width: 56px; height: 3px; background: #F07800; margin: 0 0 22px; }
 
-.srjgl-term { padding: 16px 0; border-bottom: 1px solid #EDEBE5; scroll-margin-top: 90px; }
+.srjgl-term { padding: 18px 0 18px 22px; border-bottom: 1px solid #EDEBE5; scroll-margin-top: 90px; }
 .srjgl-term:last-child { border-bottom: none; }
-.srjgl-term h3 { font-family: Poppins, sans-serif; font-size: 17px; font-weight: 600; color: #201868; margin: 0 0 6px; }
-.srjgl-term p { font-family: Poppins, sans-serif; font-size: 15px; line-height: 1.65; color: #3A3A45; margin: 0; }
-.srjgl-term .srjgl-eg { display: block; margin-top: 5px; font-size: 14px; color: #7A8A9E; }
-.srjgl-term .srjgl-eg em { color: #7A8A9E; }
+.srjgl-term h3 { font-family: Lora, serif; font-size: 20px; font-weight: 700; color: #201868; margin: 0 0 7px -22px; letter-spacing: 0.01em; }
+.srjgl-term p { font-family: Poppins, sans-serif; font-size: 15px; line-height: 1.7; color: #2C2C2A; margin: 0; }
+.srjgl-term p::before { content: "1"; color: #F07800; font-weight: 600; font-size: 14px; margin-right: 9px; font-family: Lora, serif; }
+.srjgl-term .srjgl-eg { display: block; margin-top: 6px; font-size: 14px; line-height: 1.6; color: #5F5E5A; }
+.srjgl-term .srjgl-eg em { color: #5F5E5A; font-style: italic; }
+.srjgl-term .srjgl-eg::before { content: "\2014\00a0"; color: #7A8A9E; }
+.srjgl-eg-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 .srjgl-empty { text-align: center; font-family: Poppins, sans-serif; color: #7A8A9E; padding: 40px 0; }
 
@@ -115,7 +126,7 @@ foreach ( $srj_gl_grouped as $srj_gl_terms ) {
         <h3><?php echo esc_html( $srj_gl_t->term ); ?></h3>
         <p><?php echo esc_html( $srj_gl_t->definition ); ?>
 <?php if ( ! empty( $srj_gl_t->example ) ) : ?>
-          <span class="srjgl-eg"><em>Example: <?php echo esc_html( $srj_gl_t->example ); ?></em></span>
+          <span class="srjgl-eg"><em><span class="srjgl-eg-label">Example: </span><?php echo esc_html( $srj_gl_t->example ); ?></em></span>
 <?php endif; ?>
         </p>
       </div>
