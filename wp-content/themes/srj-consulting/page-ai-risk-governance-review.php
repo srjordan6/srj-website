@@ -38,7 +38,7 @@ get_header();
   .video-embed-section h2 { font-size: clamp(30px, 3.6vw, 46px); line-height: 1.15; margin: 0 auto 22px; max-width: 22ch; }
   .video-embed-section h2 em { font-style: italic; color: var(--orange); }
   .video-embed-section .video-lede { color: var(--ink-soft); font-size: 17px; line-height: 1.65; max-width: 60ch; margin: 0 auto 44px; }
-  .video-frame { position: relative; width: 100%; max-width: 960px; margin: 0 auto; padding-bottom: 56.25%; height: 0; overflow: hidden; background: var(--navy-deep); border-radius: 4px; box-shadow: 0 30px 80px -24px rgba(36, 24, 91, 0.35); }
+  .video-frame { position: relative; width: 100%; max-width: 960px; margin: 0 auto; aspect-ratio: 16 / 9; overflow: hidden; background: var(--navy-deep); border-radius: 4px; box-shadow: 0 30px 80px -24px rgba(36, 24, 91, 0.35); }
   .video-frame iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
   .video-meta { margin-top: 30px; font-family: 'Inter', sans-serif; font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
   @media (max-width: 720px) { .video-embed-section { padding: 60px 0 50px; } .video-embed-section .video-lede { margin-bottom: 32px; } }
