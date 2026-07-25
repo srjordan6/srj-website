@@ -813,8 +813,15 @@ SRJBODY,
 SRJBODY,
     'library_base' => '/wp-content/uploads/The_Operating_Discipline_for_AI/AI_Risk_and_Governance_Review',
 
-    // Video walkthrough: omitted until provided. To enable, uncomment and fill.
-    // 'video' => array( 'youtube_id' => '...', 'title_attr' => '...', 'label' => '...', 'headline' => '...', 'lede' => '...', 'meta' => '...' ),
+    // Video walkthrough (added July 24, 2026).
+    'video' => array(
+        'youtube_id' => 'rcx0kqR4BNM',
+        'title_attr' => 'Prove Your AI Is Governed: The Framework Every Executive Needs',
+        'label'      => 'Watch the Walkthrough',
+        'headline'   => 'Prove your AI is governed, <em>before someone asks.</em>',
+        'lede'       => 'A complete walkthrough of the AI Risk &amp; Governance Review&trade; framework. The question every board, regulator, carrier, and acquirer is now asking, the governance record that answers it, and what a defensible AI operation looks like in practice.',
+        'meta'       => 'Presented by Elizabeth &middot; Script by Stephen R. Jordan',
+    ),
 
     // Optional: executive briefing PDF card. Renders below the video when present.
     'briefing' => array(

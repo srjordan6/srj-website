@@ -32,6 +32,38 @@ get_header();
 ); ?>
 
 <style>
+  /* === Video embed section (Volume III) === */
+  .video-embed-section { padding: 80px 0 70px; background: var(--paper); border-bottom: 1px solid var(--line); text-align: center; }
+  .video-embed-section .label { justify-content: center; display: inline-flex; margin-bottom: 22px; }
+  .video-embed-section h2 { font-size: clamp(30px, 3.6vw, 46px); line-height: 1.15; margin: 0 auto 22px; max-width: 22ch; }
+  .video-embed-section h2 em { font-style: italic; color: var(--orange); }
+  .video-embed-section .video-lede { color: var(--ink-soft); font-size: 17px; line-height: 1.65; max-width: 60ch; margin: 0 auto 44px; }
+  .video-frame { position: relative; width: 100%; max-width: 960px; margin: 0 auto; padding-bottom: 56.25%; height: 0; overflow: hidden; background: var(--navy-deep); border-radius: 4px; box-shadow: 0 30px 80px -24px rgba(36, 24, 91, 0.35); }
+  .video-frame iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+  .video-meta { margin-top: 30px; font-family: 'Inter', sans-serif; font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+  @media (max-width: 720px) { .video-embed-section { padding: 60px 0 50px; } .video-embed-section .video-lede { margin-bottom: 32px; } }
+</style>
+
+<!-- ===== VIDEO: walkthrough of the AI Risk & Governance Review framework ===== -->
+<section class="video-embed-section">
+  <div class="container">
+    <div class="label">Watch the Walkthrough</div>
+    <h2>Prove your AI is governed, <em>before someone asks.</em></h2>
+    <p class="video-lede">A complete walkthrough of the AI Risk &amp; Governance Review&trade; framework. The question every board, regulator, carrier, and acquirer is now asking, the governance record that answers it, and what a defensible AI operation looks like in practice.</p>
+    <div class="video-frame">
+      <iframe
+        src="https://www.youtube-nocookie.com/embed/rcx0kqR4BNM?rel=0&modestbranding=1"
+        title="Prove Your AI Is Governed: The Framework Every Executive Needs"
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen></iframe>
+    </div>
+    <div class="video-meta">Presented by Elizabeth &middot; Script by Stephen R. Jordan</div>
+  </div>
+</section>
+
+<style>
 /* === Volume III service page, scoped visual elements (v9 standard, srjvol3- prefix) === */
 
 /* --- 1. Executive Briefing CTA panel --- */
