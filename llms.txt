@@ -133,7 +133,7 @@ The AI Audit is live. Tier 1 is a single transactional product at $399 one-time.
 
 ## Resources
 
-- [AI Glossary](https://srjconsultingservices.com/resources/ai-glossary/): A working reference of 502 AI terms across 12 categories, written for executives rather than engineers. Covers governance and regulatory vocabulary, model and infrastructure concepts, security terms, and the trademarked frameworks of The Operating Discipline for AI Library™, each with a plain-language definition, a practical example, and its origin where the term is proprietary.
+- [AI Glossary](https://srjconsultingservices.com/resources/ai-glossary/): A working reference of 522 AI terms across 12 categories, written for executives rather than engineers. Covers governance and regulatory vocabulary, the EU AI Act risk tiers, AI governance roles and oversight models, model and infrastructure concepts, security terms, and the trademarked frameworks of The Operating Discipline for AI Library™, each with a plain-language definition, a practical example, and its origin where the term is proprietary.
 - [Insights](https://srjconsultingservices.com/insights/): Long-form analysis on AI governance, operational discipline, and business performance for executives.
 - [Newsletter — The AI Operating System™](https://srjconsultingservices.com/newsletter/): Biweekly framework analysis, new templates, and field notes from active client engagements.
 - [FAQ](https://srjconsultingservices.com/faq/): Common questions about engagement, scope, and outcomes.
