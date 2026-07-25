@@ -259,6 +259,8 @@ $SRJ_BOOKS = array(
     'series'   => 'The Operating Discipline for AI Library&trade;',
     'title'    => 'The AI Business Enablement Audit&trade;',
     'subtitle' => 'The Operating System for Running AI as a Permanent Business Function',
+    'cover'    => 'https://srjconsultingservices.com/wp-content/uploads/2560px-X-1600px-Kindle-Cover-RGB-1.jpg',
+    'cover_alt'=> 'The AI Business Enablement Audit book cover',
     'status'   => 'available',          // 'available' | 'forthcoming'
     'status_label' => 'Available Now',
     'description' => 'The diagnostic foundation of the series. A structured evaluation of how AI is currently operating across a business, what it is costing fully loaded, and whether it is producing measurable outcomes. Built for executives and boards who need a defensible understanding of their AI posture, written in plain English, no technical background required.',
@@ -386,6 +388,8 @@ SRJBODY,
     'series'   => 'The Operating Discipline for AI Library&trade;',
     'title'    => 'The AI Readiness & Performance Assessment&trade;',
     'subtitle' => 'A Practical Operating Discipline for Scaling AI in Small and Mid-Sized Businesses',
+    'cover'    => 'https://srjconsultingservices.com/wp-content/uploads/6x9-Front-Cover-RGB-scaled.jpg',
+    'cover_alt'=> 'The AI Readiness and Performance Assessment book cover',
     'status'   => 'available',          // 'available' | 'forthcoming'
     'status_label' => 'Available Now',
     'description' => 'The performance discipline of the series. A structured, evidence-based way to test whether the AI already running inside a business is producing measurable results, or just generating activity that looks like progress. It scores six readiness conditions into a single decision, expand, refine, or pause, so leaders stop guessing about AI and start managing it. Plain English, no engineering background required.',
@@ -756,6 +760,8 @@ SRJBODY,
     'series'   => 'The Operating Discipline for AI Library&trade;',
     'title'    => 'The AI Risk &amp; Governance Review&trade;',
     'subtitle' => 'How Executives Defend Their AI Decisions When the Board, the Regulator, the Acquirer, or the Lawyer Asks',
+    'cover'    => 'https://srjconsultingservices.com/wp-content/uploads/Volume_III_KDP_Kindle_RGB.jpg',
+    'cover_alt'=> 'The AI Risk and Governance Review book cover',
     'status'   => 'available',
     'status_label' => 'Available Now',
     'description' => 'The governance discipline of the Library. A structured operating model for converting the audit and the assessment into a defensible dossier when a regulator, an auditor, an acquirer, or a carrier asks. The 6-Step Review produces a per-use-case governance dossier; the AI Governance Framework Crosswalk aligns it to ISO/IEC 42001, the NIST AI RMF, the EU AI Act, NYC Local Law 144, SR 11-7, and the sector rules. Plain English, no background in AI law or formal standards required.',
@@ -817,10 +823,10 @@ SRJBODY,
     'video' => array(
         'youtube_id' => 'rcx0kqR4BNM',
         'title_attr' => 'Prove Your AI Is Governed: The Framework Every Executive Needs',
-        'label'      => 'Watch the 25-Minute Walkthrough',
+        'label'      => 'Watch the Walkthrough',
         'headline'   => 'Prove your AI is governed, <em>before someone asks.</em>',
         'lede'       => 'A complete walkthrough of the AI Risk &amp; Governance Review&trade; framework. The question every board, regulator, carrier, and acquirer is now asking, the governance record that answers it, and what a defensible AI operation looks like in practice.',
-        'meta'       => 'Presented by Elizabeth &middot; Script by Stephen R. Jordan &middot; 25 minutes',
+        'meta'       => 'Presented by Elizabeth &middot; Script by Stephen R. Jordan',
     ),
 
     // Optional: executive briefing PDF card. Renders below the video when present.
@@ -882,11 +888,13 @@ SRJBODY,
     'series'   => 'The Operating Discipline for AI Library&trade;',
     'title'    => 'The AI Efficiency &amp; Process Optimization&trade;',
     'subtitle' => 'How Leadership Teams Convert AI Adoption Into Measurable Operating Performance and a Defensible Financial Return',
-    'status'   => 'available',        // launch day: change to 'available'
-    'status_label' => 'Available Now',
+    'cover'    => 'https://srjconsultingservices.com/wp-content/uploads/Volume_IV_KDP_Kindle_RGB.jpg',
+    'cover_alt'=> 'The AI Efficiency and Process Optimization book cover',
+    'status'   => 'forthcoming',        // launch day: change to 'available'
+    'status_label' => 'Forthcoming',
     'description' => 'The performance discipline that closes Pillar I. A structured operating discipline for converting AI adoption into measurable operating performance and a defensible financial return. Names the AI Efficiency Gap, maps Phantom Productivity, calculates the AI Efficiency Tax, and installs the Workflow Reality Map, the AI Process Fit Test, and the Four AI Performance Indicators. Produces a single AI Efficiency Scorecard, an AI ROI Formula the CFO can defend in the boardroom, an Executive AI Efficiency Brief the chair can read in five minutes, and a 90 Day AI Process Optimization Plan that runs inside the operating rhythm already in place.',
     // Launch day: add the Amazon URL and the buy button replaces the note below.
-    'buy_url'  => 'https://www.amazon.com/dp/B0HBFVM7DG',
+    'buy_url'  => '',
     'buy_label'=> 'Buy on Amazon',
     'buy_note' => 'Hardcover, paperback, and Kindle editions.',
     'forthcoming_note' => 'The AI Efficiency &amp; Process Optimization&trade; is forthcoming as Book 04 of 9 in The Operating Discipline for AI Library&trade;, the closing volume of Pillar I, AI Business Services&trade;. Be the first to know when it launches, subscribe to The AI Operating System newsletter for the launch announcement, advance excerpts, and the methodology behind the framework.',
@@ -1004,6 +1012,22 @@ $book = isset( $SRJ_BOOKS[ $srj_slug ] ) ? $SRJ_BOOKS[ $srj_slug ] : null;
   /* ===== BOOK DETAIL PAGE — title block, meta, buy button ===== */
   .book-detail .book-hero {
     padding: 88px 0 56px; border-bottom: 1px solid var(--gray-light);
+  }
+  .book-detail .book-hero-grid {
+    display: grid; grid-template-columns: 1fr; gap: 48px; align-items: start;
+  }
+  .book-detail .book-hero-grid.has-cover {
+    grid-template-columns: minmax(0, 1fr) 300px;
+  }
+  .book-detail .book-cover-col { order: 2; }
+  .book-detail .book-cover-col img {
+    width: 100%; height: auto; display: block;
+    border-radius: 4px;
+    box-shadow: 0 24px 60px -20px rgba(32, 24, 104, .45);
+  }
+  @media (max-width: 900px) {
+    .book-detail .book-hero-grid.has-cover { grid-template-columns: 1fr; }
+    .book-detail .book-cover-col { order: 0; max-width: 260px; margin-bottom: 8px; }
   }
   .book-detail .series-eyebrow {
     font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 600;
@@ -1467,7 +1491,7 @@ $book = isset( $SRJ_BOOKS[ $srj_slug ] ) ? $SRJ_BOOKS[ $srj_slug ] : null;
   .video-embed-section h2 { font-family: 'Lora', serif; font-weight: 500; color: var(--navy); font-size: clamp(30px, 3.6vw, 46px); line-height: 1.15; margin: 0 auto 22px; max-width: 22ch; }
   .video-embed-section h2 em { font-style: italic; color: var(--orange); }
   .video-embed-section .video-lede { font-family: 'Poppins', sans-serif; color: var(--ink-soft); font-size: 17px; line-height: 1.65; max-width: 60ch; margin: 0 auto 44px; }
-  .video-frame { position: relative; width: 100%; max-width: 960px; margin: 0 auto; aspect-ratio: 16 / 9; overflow: hidden; background: var(--navy-deep); border-radius: 4px; box-shadow: 0 30px 80px -24px rgba(36, 24, 91, 0.35); }
+  .video-frame { position: relative; width: 100%; max-width: 960px; margin: 0 auto; padding-bottom: 56.25%; height: 0; overflow: hidden; background: var(--navy-deep); border-radius: 4px; box-shadow: 0 30px 80px -24px rgba(36, 24, 91, 0.35); }
   .video-frame iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
   .video-meta { margin-top: 30px; font-family: 'Inter', sans-serif; font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
   @media (max-width: 720px) { .video-embed-section { padding: 60px 0 50px; } .video-embed-section .video-lede { margin-bottom: 32px; } }
@@ -1504,6 +1528,8 @@ $book = isset( $SRJ_BOOKS[ $srj_slug ] ) ? $SRJ_BOOKS[ $srj_slug ] : null;
       <?php if ( function_exists( 'srj_breadcrumbs' ) ) { srj_breadcrumbs(); } ?>
 
       <?php if ( $book ) : ?>
+        <div class="book-hero-grid<?php echo ! empty( $book['cover'] ) ? ' has-cover' : ''; ?>">
+        <div class="book-hero-text">
         <div class="series-eyebrow"><?php echo esc_html( $book['series'] ); ?></div>
         <h1 class="book-title"><?php echo esc_html( $book['title'] ); ?></h1>
         <?php if ( ! empty( $book['subtitle'] ) ) : ?>
@@ -1533,6 +1559,15 @@ $book = isset( $SRJ_BOOKS[ $srj_slug ] ) ? $SRJ_BOOKS[ $srj_slug ] : null;
             </div>
           </div>
         <?php endif; ?>
+        </div><!-- .book-hero-text -->
+        <?php if ( ! empty( $book['cover'] ) ) : ?>
+          <div class="book-cover-col">
+            <img src="<?php echo esc_url( $book['cover'] ); ?>"
+                 alt="<?php echo esc_attr( ! empty( $book['cover_alt'] ) ? $book['cover_alt'] : $book['title'] ); ?>"
+                 loading="eager" width="600" height="960">
+          </div>
+        <?php endif; ?>
+        </div><!-- .book-hero-grid -->
 
       <?php else : ?>
         <?php // Fallback: no config entry matched this page slug. ?>
