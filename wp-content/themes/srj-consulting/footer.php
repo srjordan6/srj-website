@@ -3,6 +3,13 @@
  * Footer template.
  * Renders the site footer, floating CTA, and closing body tags.
  *
+ * v1.2.14 (July 24, 2026): Books promoted to a nested group in the Explore
+ * column, matching Services and Resources: the Books header now carries two
+ * sub-items, AI Business Services (Pillar I) and AI Risk Governance &amp;
+ * Security (Pillar II), each linking its pillar landing page. Coincides with
+ * Book 04 (The AI Efficiency &amp; Process Optimization) going on sale, which
+ * completes Pillar I at four available volumes.
+ *
  * v1.2.13 (July 20, 2026): AI Glossary added to the Resources group,
  * linking /resources/ai-glossary/.
  *
@@ -113,6 +120,10 @@ $home = trailingslashit( home_url() );
         </ul>
         <h5 style="margin-top:24px"><a href="<?php echo esc_url( $home . 'industries/' ); ?>" style="color:inherit;text-decoration:none">Industries</a></h5>
         <h5 style="margin-top:24px"><a href="<?php echo esc_url( $home . 'books/' ); ?>" style="color:inherit;text-decoration:none">Books</a></h5>
+        <ul>
+          <li class="footer-firm-sub"><a href="<?php echo esc_url( $home . 'books/ai-business-services/' ); ?>">AI Business Services</a></li>
+          <li class="footer-firm-sub"><a href="<?php echo esc_url( $home . 'books/ai-risk-governance-security/' ); ?>">AI Risk Governance &amp; Security</a></li>
+        </ul>
         <h5 style="margin-top:24px"><a href="<?php echo esc_url( $home . 'resources/' ); ?>" style="color:inherit;text-decoration:none">Resources</a></h5>
         <ul>
           <li class="footer-firm-sub"><a href="<?php echo esc_url( $home . 'ai-governance/' ); ?>">AI Governance Library</a></li>

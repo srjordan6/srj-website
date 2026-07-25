@@ -88,7 +88,7 @@ $SRJ_SERIES = array(
         'series' => 'The Operating Discipline for AI Library&trade;',
         'num' => 'Book 04', 'title' => 'The AI Efficiency &amp; Process Optimization',
         'slug' => 'the-ai-efficiency-process-optimization',
-        'status' => 'forthcoming', 'status_label' => 'Forthcoming',
+        'status' => 'available', 'status_label' => 'Available Now',
         'summary' => 'Once AI is understood and governed, this book turns to operational effectiveness — repeatable processes, reduced manual effort, and labor savings that are genuinely captured. The closing volume of Pillar I.',
       ),
     ),
@@ -335,7 +335,7 @@ $books_home = home_url( '/books/' );
     <div class="container">
       <div class="books-summary-inner">
         <div class="books-summary-label">What The Operating Discipline for AI Library&trade; is</div>
-        <p><strong>Nine books mapped one-to-one against the nine service lines at SRJ Consulting &amp; Services.</strong> Each book is a working methodology, not a survey, the frameworks, case patterns, and templates a leadership team uses to bring AI under operating control. Volumes I and II are available now; Volumes III through IX are forthcoming.</p>
+        <p><strong>Nine books mapped one-to-one against the nine service lines at SRJ Consulting &amp; Services.</strong> Each book is a working methodology, not a survey, the frameworks, case patterns, and templates a leadership team uses to bring AI under operating control. Volumes I through IV are available now; Volumes V through IX are forthcoming.</p>
       </div>
     </div>
   </section>
