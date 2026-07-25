@@ -47,7 +47,7 @@ get_header();
 <!-- ===== VIDEO: walkthrough of the AI Risk & Governance Review framework ===== -->
 <section class="video-embed-section">
   <div class="container">
-    <div class="label">Watch the Walkthrough</div>
+    <div class="label">Watch the 25-Minute Walkthrough</div>
     <h2>Prove your AI is governed, <em>before someone asks.</em></h2>
     <p class="video-lede">A complete walkthrough of the AI Risk &amp; Governance Review&trade; framework. The question every board, regulator, carrier, and acquirer is now asking, the governance record that answers it, and what a defensible AI operation looks like in practice.</p>
     <div class="video-frame">
@@ -59,7 +59,7 @@ get_header();
         referrerpolicy="strict-origin-when-cross-origin"
         allowfullscreen></iframe>
     </div>
-    <div class="video-meta">Presented by Elizabeth &middot; Script by Stephen R. Jordan</div>
+    <div class="video-meta">Presented by Elizabeth &middot; Script by Stephen R. Jordan &middot; 25 minutes</div>
   </div>
 </section>
 

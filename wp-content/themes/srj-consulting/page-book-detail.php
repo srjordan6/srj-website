@@ -817,10 +817,10 @@ SRJBODY,
     'video' => array(
         'youtube_id' => 'rcx0kqR4BNM',
         'title_attr' => 'Prove Your AI Is Governed: The Framework Every Executive Needs',
-        'label'      => 'Watch the Walkthrough',
+        'label'      => 'Watch the 25-Minute Walkthrough',
         'headline'   => 'Prove your AI is governed, <em>before someone asks.</em>',
         'lede'       => 'A complete walkthrough of the AI Risk &amp; Governance Review&trade; framework. The question every board, regulator, carrier, and acquirer is now asking, the governance record that answers it, and what a defensible AI operation looks like in practice.',
-        'meta'       => 'Presented by Elizabeth &middot; Script by Stephen R. Jordan',
+        'meta'       => 'Presented by Elizabeth &middot; Script by Stephen R. Jordan &middot; 25 minutes',
     ),
 
     // Optional: executive briefing PDF card. Renders below the video when present.
