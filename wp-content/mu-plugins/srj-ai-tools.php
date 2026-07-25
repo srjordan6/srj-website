@@ -279,8 +279,8 @@ function srj_ai_tools_render_catalog() {
 	// Scoped link styling: tool-name links render as the plain bold names
 	// they replaced (no theme orange underline), navy, orange on hover only.
 	$html  = '<style>'
-		. '.longform ul li strong a{color:inherit;border-bottom:none;padding-bottom:0;}'
-		. '.longform ul li strong a:hover{color:var(--orange);border-bottom:none;}'
+		. '.longform ul li strong a:not(.btn){color:inherit;border-bottom:none;padding-bottom:0;}'
+		. '.longform ul li strong a:not(.btn):hover{color:var(--orange);border-bottom:none;}'
 		. '</style>' . "\n";
 	foreach ( $grouped as $category => $tools ) {
 		$html .= sprintf(
