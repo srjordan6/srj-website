@@ -37,6 +37,38 @@ get_header();
 ); ?>
 
 <style>
+  /* === Video embed section (Volume IV) === */
+  .video-embed-section { padding: 80px 0 70px; background: var(--paper); border-bottom: 1px solid var(--line); text-align: center; }
+  .video-embed-section .label { justify-content: center; display: inline-flex; margin-bottom: 22px; }
+  .video-embed-section h2 { font-size: clamp(30px, 3.6vw, 46px); line-height: 1.15; margin: 0 auto 22px; max-width: 22ch; }
+  .video-embed-section h2 em { font-style: italic; color: var(--orange); }
+  .video-embed-section .video-lede { color: var(--ink-soft); font-size: 17px; line-height: 1.65; max-width: 60ch; margin: 0 auto 44px; }
+  .video-frame { position: relative; width: 100%; max-width: 960px; margin: 0 auto; aspect-ratio: 16 / 9; overflow: hidden; background: var(--navy-deep); border-radius: 4px; box-shadow: 0 30px 80px -24px rgba(36, 24, 91, 0.35); }
+  .video-frame iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+  .video-meta { margin-top: 30px; font-family: 'Inter', sans-serif; font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+  @media (max-width: 720px) { .video-embed-section { padding: 60px 0 50px; } .video-embed-section .video-lede { margin-bottom: 32px; } }
+</style>
+
+<!-- ===== VIDEO: walkthrough of the AI Efficiency & Process Optimization framework ===== -->
+<section class="video-embed-section">
+  <div class="container">
+    <div class="label">Watch the 13-Minute Walkthrough</div>
+    <h2>Prove your AI <em>paid off.</em></h2>
+    <p class="video-lede">A complete walkthrough of the AI Efficiency &amp; Process Optimization&trade; framework. Why adoption is not the same as return, the four AI performance indicators executives should be measuring, and how governance findings become operational savings the finance team will accept.</p>
+    <div class="video-frame">
+      <iframe
+        src="https://www.youtube-nocookie.com/embed/AWEo4s-Im_E?rel=0&modestbranding=1"
+        title="The AI Efficiency &amp; Process Optimization Framework"
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen></iframe>
+    </div>
+    <div class="video-meta">Presented by Elizabeth &middot; Script by Stephen R. Jordan &middot; 13 minutes</div>
+  </div>
+</section>
+
+<style>
 /* === Volume IV service page, scoped visual elements === */
 
 /* --- 1. Executive Briefing CTA panel --- */

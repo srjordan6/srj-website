@@ -68,6 +68,24 @@ function srj_video_schema_map() {
 			'duration'     => 'PT15M',
 		),
 
+		// Service page: AI Efficiency & Process Optimization (Volume IV video).
+		'ai-efficiency-process' => array(
+			'name'         => 'The AI Efficiency & Process Optimization Framework',
+			'description'  => 'A complete walkthrough of the AI Efficiency & Process Optimization framework: why adoption is not the same as return, the four AI performance indicators executives should be measuring, and how governance findings become operational savings the finance team will accept.',
+			'youtube_id'   => 'AWEo4s-Im_E',
+			'upload_date'  => '2026-07-25',
+			'duration'     => 'PT12M32S',
+		),
+
+		// Book page: The AI Efficiency & Process Optimization (Volume IV video).
+		'the-ai-efficiency-process-optimization' => array(
+			'name'         => 'The AI Efficiency & Process Optimization Framework',
+			'description'  => 'A complete walkthrough of the AI Efficiency & Process Optimization framework: why adoption is not the same as return, the four AI performance indicators executives should be measuring, and how governance findings become operational savings the finance team will accept.',
+			'youtube_id'   => 'AWEo4s-Im_E',
+			'upload_date'  => '2026-07-25',
+			'duration'     => 'PT12M32S',
+		),
+
 		// Book page: The AI Risk & Governance Review (Volume III video).
 		'the-ai-risk-governance-review' => array(
 			'name'         => 'Prove Your AI Is Governed: The Framework Every Executive Needs',

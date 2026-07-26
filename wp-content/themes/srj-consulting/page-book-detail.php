@@ -948,8 +948,15 @@ SRJBODY,
 SRJBODY,
     'library_base' => '/wp-content/uploads/The_Operating_Discipline_for_AI/The_AI_Efficiency_and_Process_Optimization',
 
-    // Video walkthrough: omitted until provided. To enable, uncomment and fill.
-    // 'video' => array( 'youtube_id' => '...', 'title_attr' => '...', 'label' => '...', 'headline' => '...', 'lede' => '...', 'meta' => '...' ),
+    // Optional: walkthrough video. Renders between hero and body when present.
+    'video' => array(
+        'youtube_id' => 'AWEo4s-Im_E',
+        'title_attr' => 'The AI Efficiency and Process Optimization Framework',
+        'label'      => 'Watch the 13-Minute Walkthrough',
+        'headline'   => 'Prove your AI <em>paid off.</em>',
+        'lede'       => 'A complete walkthrough of the AI Efficiency &amp; Process Optimization&trade; framework. Why adoption is not the same as return, the four AI performance indicators executives should be measuring, and how governance findings become operational savings the finance team will accept.',
+        'meta'       => 'Presented by Elizabeth &middot; Script by Stephen R. Jordan &middot; 13 minutes',
+    ),
 
     'briefing' => array(
         'title_html' => 'The AI Efficiency &amp; Process Optimization&trade;',
