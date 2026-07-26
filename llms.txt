@@ -90,10 +90,10 @@ A sixth correction was recorded on 17 July 2026 with the addition of the China A
 
 ## AI Business Services
 
-- [The AI Business Enablement Audit(TM)](https://srjconsultingservices.com/services/business-services/ai-business-enablement-audit/): Diagnostic that surfaces every AI tool, embedded feature, and hidden subscription operating inside a business. Recovers visibility and gives leadership a baseline for managing AI as a business function.
-- [The AI Readiness & Performance Assessment(TM)](https://srjconsultingservices.com/services/business-services/ai-readiness-performance/): Determines whether the business is positioned to scale AI responsibly.
-- [The AI Risk & Governance Review(TM)](https://srjconsultingservices.com/services/business-services/ai-risk-governance-review/): Identifies regulatory, operational, and reputational exposure from current AI deployments.
-- [The AI Efficiency & Process Optimization(TM)](https://srjconsultingservices.com/services/business-services/ai-efficiency-process/): Translates AI capability into measurable workflow and cost improvements.
+- [The AI Business Enablement Audit(TM)](https://srjconsultingservices.com/services/business-services/ai-business-enablement-audit/): Diagnostic that surfaces every AI tool, embedded feature, and hidden subscription operating inside a business. Recovers visibility and gives leadership a baseline for managing AI as a business function. Includes a free 18-minute video walkthrough of the framework.
+- [The AI Readiness & Performance Assessment(TM)](https://srjconsultingservices.com/services/business-services/ai-readiness-performance/): Determines whether the business is positioned to scale AI responsibly. Includes a free 15-minute video walkthrough of the framework.
+- [The AI Risk & Governance Review(TM)](https://srjconsultingservices.com/services/business-services/ai-risk-governance-review/): Identifies regulatory, operational, and reputational exposure from current AI deployments. Includes a free 25-minute video walkthrough of the framework.
+- [The AI Efficiency & Process Optimization(TM)](https://srjconsultingservices.com/services/business-services/ai-efficiency-process/): Translates AI capability into measurable workflow and cost improvements. Includes a free 13-minute video walkthrough of the framework.
 
 ## AI Risk Governance & Security
 
