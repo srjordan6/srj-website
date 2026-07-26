@@ -64,7 +64,7 @@ get_header();
         referrerpolicy="strict-origin-when-cross-origin"
         allowfullscreen></iframe>
     </div>
-    <div class="video-meta">Presented by Elizabeth &middot; Script by Stephen R. Jordan &middot; 13 minutes</div>
+    <div class="video-meta">Written and presented by Stephen R. Jordan &middot; 13 minutes</div>
   </div>
 </section>
 
