@@ -28,18 +28,29 @@
 $GLOBALS['srj_current_nav'] = 'ai-governance';
 get_header();
 
-// Load the config
-$config_path = get_stylesheet_directory() . '/inc/ai-governance-config.php';
-if ( file_exists( $config_path ) ) {
-    require $config_path;
-}
-if ( ! isset( $SRJ_GOVERNANCE ) || ! is_array( $SRJ_GOVERNANCE ) ) {
-    $SRJ_GOVERNANCE = array();
-}
-
-// Lookup by current page slug
+// Resolve the entry. Database first: one row for this page, plus a
+// body-less index used only for the parent eyebrow and the child links.
+// Rendering one page used to require the whole 1.2MB config and decode
+// all 63 rows; this moves roughly 19KB instead. The PHP config is still
+// the fallback, exactly as srj-ai-governance-db.php has always promised,
+// and is loaded only when the database has no rows to serve.
 $slug  = get_post_field( 'post_name', get_post() );
-$entry = isset( $SRJ_GOVERNANCE[ $slug ] ) ? $SRJ_GOVERNANCE[ $slug ] : null;
+$entry = null;
+$nav   = array();
+
+if ( function_exists( 'srj_govdb_has_rows' ) && srj_govdb_has_rows() ) {
+    $entry = srj_govdb_get( $slug );
+    $nav   = srj_govdb_get_lite();
+} else {
+    $config_path = get_stylesheet_directory() . '/inc/ai-governance-config.php';
+    if ( file_exists( $config_path ) ) {
+        require $config_path;
+    }
+    if ( isset( $SRJ_GOVERNANCE ) && is_array( $SRJ_GOVERNANCE ) ) {
+        $entry = isset( $SRJ_GOVERNANCE[ $slug ] ) ? $SRJ_GOVERNANCE[ $slug ] : null;
+        $nav   = $SRJ_GOVERNANCE;
+    }
+}
 
 if ( ! $entry ) {
     // Fallback: render a graceful placeholder rather than blank
@@ -57,8 +68,8 @@ if ( ! $entry ) {
 // Determine parent (for hero eyebrow) and children (for below-body block)
 $parent_slug  = isset( $entry['parent'] ) ? $entry['parent'] : 'ai-governance';
 $parent_title = 'AI Governance';
-if ( $parent_slug !== 'ai-governance' && isset( $SRJ_GOVERNANCE[ $parent_slug ] ) ) {
-    $parent_title = $SRJ_GOVERNANCE[ $parent_slug ]['title'];
+if ( $parent_slug !== 'ai-governance' && isset( $nav[ $parent_slug ] ) ) {
+    $parent_title = $nav[ $parent_slug ]['title'];
 }
 $children = ( isset( $entry['children'] ) && is_array( $entry['children'] ) ) ? $entry['children'] : array();
 ?>
@@ -100,7 +111,7 @@ $children = ( isset( $entry['children'] ) && is_array( $entry['children'] ) ) ? 
         <h2>Deep dives in this category</h2>
         <ul class="srjgov-children-list">
           <?php foreach ( $children as $child_slug ) :
-              $child = isset( $SRJ_GOVERNANCE[ $child_slug ] ) ? $SRJ_GOVERNANCE[ $child_slug ] : null;
+              $child = isset( $nav[ $child_slug ] ) ? $nav[ $child_slug ] : null;
               if ( ! $child ) { continue; }
               $child_url = home_url( '/ai-governance/' . $slug . '/' . $child_slug . '/' );
           ?>

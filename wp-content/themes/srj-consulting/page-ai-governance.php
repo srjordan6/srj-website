@@ -57,13 +57,22 @@
 $GLOBALS['srj_current_nav'] = 'ai-governance';
 get_header();
 
-// Load the config
-$config_path = get_stylesheet_directory() . '/inc/ai-governance-config.php';
-if ( file_exists( $config_path ) ) {
-    require $config_path;
-}
-if ( ! isset( $SRJ_GOVERNANCE ) || ! is_array( $SRJ_GOVERNANCE ) ) {
-    $SRJ_GOVERNANCE = array();
+// Resolve the directory. The hub only ever renders titles, subtitles and
+// links, never article bodies, so it reads the body-less index: columns
+// only, no JSON decoding, roughly 95 percent smaller than the full set.
+// The PHP config remains the fallback when the database has no rows.
+$nav = array();
+
+if ( function_exists( 'srj_govdb_has_rows' ) && srj_govdb_has_rows() ) {
+    $nav = srj_govdb_get_lite();
+} else {
+    $config_path = get_stylesheet_directory() . '/inc/ai-governance-config.php';
+    if ( file_exists( $config_path ) ) {
+        require $config_path;
+    }
+    if ( isset( $SRJ_GOVERNANCE ) && is_array( $SRJ_GOVERNANCE ) ) {
+        $nav = $SRJ_GOVERNANCE;
+    }
 }
 
 // Display order for the 15 categories, grouped by conceptual affinity
@@ -211,8 +220,8 @@ $order = array(
 
     <div class="srjgov-dir">
       <?php foreach ( $order as $slug ) :
-          if ( ! isset( $SRJ_GOVERNANCE[ $slug ] ) ) continue;
-          $entry = $SRJ_GOVERNANCE[ $slug ];
+          if ( ! isset( $nav[ $slug ] ) ) continue;
+          $entry = $nav[ $slug ];
           $url   = home_url( '/ai-governance/' . $slug . '/' );
           $children = ( isset( $entry['children'] ) && is_array( $entry['children'] ) ) ? $entry['children'] : array();
       ?>
@@ -226,8 +235,8 @@ $order = array(
           <?php if ( ! empty( $children ) ) : ?>
             <ul class="srjgov-dir-children">
               <?php foreach ( $children as $child_slug ) :
-                  if ( ! isset( $SRJ_GOVERNANCE[ $child_slug ] ) ) continue;
-                  $child = $SRJ_GOVERNANCE[ $child_slug ];
+                  if ( ! isset( $nav[ $child_slug ] ) ) continue;
+                  $child = $nav[ $child_slug ];
                   $child_url = home_url( '/ai-governance/' . $slug . '/' . $child_slug . '/' );
               ?>
                 <li>

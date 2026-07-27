@@ -222,12 +222,92 @@ function srj_govdb_get_all() {
 /**
  * Read one entry by slug.
  *
+ * Single-row fetch. Decodes one JSON blob rather than all 63, which is the
+ * difference between moving ~19KB and ~1.2MB to render one page.
+ *
  * @param string $slug Page slug.
  * @return array|null
  */
 function srj_govdb_get( $slug ) {
-	$all = srj_govdb_get_all();
-	return isset( $all[ $slug ] ) ? $all[ $slug ] : null;
+	global $wpdb;
+
+	static $cache = array();
+	if ( array_key_exists( $slug, $cache ) ) {
+		return $cache[ $slug ];
+	}
+
+	if ( ! srj_govdb_table_exists() ) {
+		$cache[ $slug ] = null;
+		return null;
+	}
+
+	$json = $wpdb->get_var(
+		$wpdb->prepare(
+			'SELECT entry_json FROM ' . srj_govdb_table() . ' WHERE slug = %s AND is_published = 1',
+			$slug
+		)
+	);
+
+	$entry = $json ? json_decode( $json, true ) : null;
+	$cache[ $slug ] = is_array( $entry ) ? $entry : null;
+
+	return $cache[ $slug ];
+}
+
+/**
+ * Read every published entry WITHOUT its body HTML.
+ *
+ * Columns only, no JSON decoding. Returns the shape templates expect for
+ * navigation work: title, subtitle, short, parent, children. Bodies are
+ * roughly 95 percent of the payload, so this is the query to use anywhere
+ * the page is building links rather than rendering an article.
+ *
+ * `children` is derived from parent_slug rather than read from the stored
+ * array. Verified equivalent across all entries: every declared child also
+ * declares its parent, so the two are the same set, and deriving keeps the
+ * result ordered by sort_order for free.
+ *
+ * @return array Keyed by slug.
+ */
+function srj_govdb_get_lite() {
+	global $wpdb;
+
+	static $cache = null;
+	if ( null !== $cache ) {
+		return $cache;
+	}
+
+	if ( ! srj_govdb_table_exists() ) {
+		$cache = array();
+		return $cache;
+	}
+
+	$rows = $wpdb->get_results(
+		'SELECT slug, title, subtitle, short_desc, parent_slug FROM ' . srj_govdb_table() . '
+		 WHERE is_published = 1
+		 ORDER BY sort_order ASC, slug ASC'
+	);
+
+	$out = array();
+	foreach ( (array) $rows as $row ) {
+		$out[ $row->slug ] = array(
+			'title'    => $row->title,
+			'subtitle' => $row->subtitle,
+			'short'    => $row->short_desc,
+			'parent'   => $row->parent_slug ? $row->parent_slug : null,
+			'children' => array(),
+		);
+	}
+
+	foreach ( $out as $slug => $entry ) {
+		$parent = $entry['parent'];
+		if ( $parent && isset( $out[ $parent ] ) ) {
+			$out[ $parent ]['children'][] = $slug;
+		}
+	}
+
+	$cache = $out;
+	return $cache;
 }
 
 /**
